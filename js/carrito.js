@@ -9,8 +9,8 @@ function guardarCarrito() {
 function agregarAlCarrito(id) {
   const productos = JSON.parse(localStorage.getItem("todosLosProductos")) || [];
   const producto = productos.find(p => p.id === id);
-
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  
+  carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   const item = carrito.find(p => p.id === id);
 
   if (item) {
