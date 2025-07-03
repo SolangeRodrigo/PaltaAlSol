@@ -9,7 +9,7 @@
 </head>
 <body>
   <header>
-    <img src="logos/logo.super.png" alt="Logo de la tienda canina" width="230" />
+    <img src="logos/logo.super.png" alt="Logo de la tienda" width="230" />
     <h1>Tu carrito de compras</h1>
     <a href="productos.html" style="display:inline-block; margin:10px 0; padding:10px 20px; background-color:#1f4620; color:white; text-decoration:none; border-radius:10px;">← Volver a productos</a>
   </header>
@@ -20,73 +20,21 @@
     <button onclick="finalizarCompra()" style="margin-top: 20px; padding:10px 20px; background-color:#1f4620; color:white; border:none; border-radius:8px;">Finalizar compra</button>
   </main>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      mostrarCarrito();
-    });
-
-    function mostrarCarrito() {
-      const contenedor = document.getElementById("carrito-contenido");
-      const totalContenedor = document.getElementById("total");
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-      contenedor.innerHTML = "";
-      let total = 0;
-
-      if (carrito.length === 0) {
-        contenedor.innerHTML = "<p>El carrito está vacío.</p>";
-        totalContenedor.innerHTML = "";
-        return;
-      }
-
-      carrito.forEach(p => {
-        total += p.price * p.cantidad;
-        contenedor.innerHTML += `
-          <div style="display:flex; gap:15px; align-items:center; margin:10px 0; border:1px solid #ddd; padding:10px; border-radius:10px;">
-            <img src="${p.thumbnail}" width="80" height="80" style="object-fit:cover; border-radius:10px;" />
-            <div>
-              <p><strong>${p.title}</strong></p>
-              <p>$${p.price} x ${p.cantidad}</p>
-              <button onclick="eliminarDelCarrito(${p.id})" style="background-color:#cc0000; color:white; border:none; padding:5px 10px; border-radius:5px;">Eliminar</button>
-            </div>
-          </div>
-        `;
-      });
-
-      totalContenedor.innerHTML = `<h3>Total: $${total}</h3>`;
-    }
-
-    function eliminarDelCarrito(id) {
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      carrito = carrito.filter(p => p.id !== id);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      mostrarCarrito();
-    }
-
-    function finalizarCompra() {
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-      alert("¡Gracias por tu compra!");
-      localStorage.removeItem("carrito");
-      mostrarCarrito();
-    }
-  </script>
-    <!-- Footer -->
-<footer style="background-color: #f4f4f4; padding: 30px 20px; text-align: center;">
-  <a style="font-size: 18px; margin-bottom: 20px;">
-    &copy; 2025 Solange Abigail Rodrigo - Supermercado
-  </a>
-  <div style="display: flex; justify-content: center; gap: 30px;">
-    <a href="https://facebook.com" target="_blank" style="color: #3b5998; font-size: 36px;">
-      <i class="fab fa-facebook-f"></i>
+  <footer style="background-color: #f4f4f4; padding: 30px 20px; text-align: center;">
+    <a style="font-size: 18px; margin-bottom: 20px;">
+      &copy; 2025 Solange Abigail Rodrigo - Supermercado
     </a>
-    <a href="https://instagram.com" target="_blank" style="color: #e1306c; font-size: 36px;">
-      <i class="fab fa-instagram"></i>
-    </a>
-  </div>
-</footer>
+    <div style="display: flex; justify-content: center; gap: 30px;">
+      <a href="https://facebook.com" target="_blank" style="color: #3b5998; font-size: 36px;">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" style="color: #e1306c; font-size: 36px;">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Solo cargamos el JS externo -->
+  <script src="js/carrito.js"></script>
 </body>
 </html>
