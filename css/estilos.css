@@ -24,12 +24,11 @@ header {
 
 .video-responsive {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%; /* Proporción 16:9 */
   height: 0;
   overflow: hidden;
   max-width: 100%;
-  margin: 40px 0;
-  text-align: center;
+  margin: auto;
 }
 
 .video-responsive iframe {
@@ -38,7 +37,6 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 0;
 }
 
 .bienvenida {
