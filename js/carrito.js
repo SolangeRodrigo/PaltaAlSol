@@ -1,4 +1,3 @@
-
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 function guardarCarrito() {
@@ -9,8 +8,6 @@ function guardarCarrito() {
 function agregarAlCarrito(id) {
   const productos = JSON.parse(localStorage.getItem("todosLosProductos")) || [];
   const producto = productos.find(p => p.id === id);
-  
-  carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   const item = carrito.find(p => p.id === id);
 
   if (item) {
@@ -19,32 +16,53 @@ function agregarAlCarrito(id) {
     carrito.push({ ...producto, cantidad: 1 });
   }
 
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-  actualizarContador(); // <-- Actualiza el contador visual
+  guardarCarrito();
   alert(`Agregaste "${producto.title}" al carrito`);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  actualizarContador();
-});
 function eliminarDelCarrito(id) {
-  const item = carrito.find(p => p.id === id);
-
-  if (!item) return;
-
-  if (item.cantidad > 1) {
-    item.cantidad -= 1;
-  } else {
-    carrito = carrito.filter(p => p.id !== id);
+  const index = carrito.findIndex(p => p.id === id);
+  if (index !== -1) {
+    if (carrito[index].cantidad > 1) {
+      carrito[index].cantidad -= 1;
+    } else {
+      carrito.splice(index, 1);
+    }
   }
 
   guardarCarrito();
   mostrarCarrito();
 }
 
+function mostrarCarrito() {
+  const contenedor = document.getElementById("carrito-contenido");
+  const totalContenedor = document.getElementById("total");
+  if (!contenedor) return;
 
-  guardarCarrito();
-  mostrarCarrito();
+  contenedor.innerHTML = "";
+  let total = 0;
+
+  if (carrito.length === 0) {
+    contenedor.innerHTML = "<p>El carrito está vacío.</p>";
+    totalContenedor.innerHTML = "";
+    return;
+  }
+
+  carrito.forEach(p => {
+    total += p.price * p.cantidad;
+    contenedor.innerHTML += `
+      <div style="display:flex; gap:15px; align-items:center; margin:10px 0; border:1px solid #ddd; padding:10px; border-radius:10px;">
+        <img src="${p.thumbnail}" width="80" height="80" style="object-fit:cover; border-radius:10px;" />
+        <div>
+          <p><strong>${p.title}</strong></p>
+          <p>$${p.price} x ${p.cantidad}</p>
+          <button onclick="eliminarDelCarrito(${p.id})" style="background-color:#cc0000; color:white; border:none; padding:5px 10px; border-radius:5px;">Eliminar</button>
+        </div>
+      </div>
+    `;
+  });
+
+  totalContenedor.innerHTML = `<h3>Total: $${total}</h3>`;
 }
 
 function finalizarCompra() {
@@ -58,48 +76,15 @@ function finalizarCompra() {
   mostrarCarrito();
 }
 
-function mostrarCarrito() {
-  const contenedor = document.getElementById("carrito-contenido");
-  const totalContenedor = document.getElementById("total");
-
-  if (!contenedor) return;
-
-  contenedor.innerHTML = "";
-  let total = 0;
-
-  if (carrito.length === 0) {
-    contenedor.innerHTML = "<p>El carrito está vacío.</p>";
-    totalContenedor.innerHTML = "";
-    return;
-  }
-
-carrito.forEach(p => {
-  total += p.precio * p.cantidad;
-  contenedor.innerHTML += `
-    <div style="border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px; display: flex; align-items: center; gap: 15px;">
-      <img src="${p.imagen}" alt="${p.nombre}" width="80" height="80" style="object-fit: contain;" />
-      <div>
-        <p><strong>${p.nombre}</strong></p>
-        <p>$${p.precio} x ${p.cantidad}</p>
-        <button onclick="eliminarDelCarrito(${p.id})" style="background-color: #ff3333; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Eliminar</button>
-      </div>
-    </div>
-  `;
-});
-
-  totalContenedor.innerHTML = `<h3>Total: $${total}</h3>`;
-}
-
 function actualizarContador() {
   const contador = document.getElementById("contador");
   if (contador) {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     const totalItems = carrito.reduce((acc, p) => acc + p.cantidad, 0);
     contador.textContent = totalItems;
   }
 }
 
-// Ejecutar en ambas páginas
+// Carga inicial
 document.addEventListener("DOMContentLoaded", () => {
   mostrarCarrito();
   actualizarContador();
