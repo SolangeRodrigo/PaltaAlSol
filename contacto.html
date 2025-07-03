@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contacto | Palta al Sol🥑</title>
+
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="css/estilos.css" />
+
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logos/logo.super.transparente.png" />
+  </head>
+
+  <body>
+    <header>
+      <img src="logos/logo.super.png" alt="Logo de la tienda canina" width="230" />
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="carrito.html" id="ver-carrito">🛒 Carrito (<span id="contador">0</span>)</a></li>
+      </ul>
+    </nav>
+
+     <h2>Contacto</h2>
+  <section class="contacto">
+    <p><strong>📍 Dirección:</strong> Calle Palta 123, Ciudad Al Sol</p>
+    <p><strong>📞 Teléfono:</strong> +54 9 11 1234-5678</p>
+    <p><strong>📧 Email:</strong> PaltaAlSol@gmail.com</p>
+    <p><strong>🕒 Horarios:</strong> Lunes a Viernes, 9:00 a 18:00 hs</p>
+
+    <!-- Formulario de contacto -->
+    <form action="https://formspree.io/f/myzwqpww" method="POST">      <label for="nombre">Nombre:</label><br>
+      <input type="text" id="nombre" name="nombre" required><br><br>
+
+      <label for="email">Correo electrónico:</label><br>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <label for="mensaje">Mensaje:</label><br>
+      <textarea id="mensaje" name="mensaje" rows="5" required></textarea><br><br>
+
+      <button type="submit">Enviar mensaje</button>
+    </form>
+  </section>
+</main>
+    <script src="js/carrito.js"></script>
+    <script>
+      const enlaces = document.querySelectorAll("nav ul li a");
+      enlaces.forEach(link => {
+        link.addEventListener("click", () => {
+          enlaces.forEach(l => l.classList.remove("activo"));
+          link.classList.add("activo");
+        });
+      });
+    </script>
+      <!-- Footer -->
+<footer style="background-color: #f4f4f4; padding: 30px 20px; text-align: center;">
+  <a style="font-size: 18px; margin-bottom: 20px;">
+    &copy; 2025 Solange Abigail Rodrigo - Tienda Canina
+  </a>
+  <div style="display: flex; justify-content: center; gap: 30px;">
+    <a href="https://facebook.com" target="_blank" style="color: #3b5998; font-size: 36px;">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://instagram.com" target="_blank" style="color: #e1306c; font-size: 36px;">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+</footer>
+  </body>
+</html>

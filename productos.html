@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Productos | Palta al Sol🥑</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logos/logo.super.transparente.png" />
+  </head>
+
+  <body>
+    <header>
+      
+      <img src="logos/logo.super.png" alt="Logo de la tienda canina" width="230" />
+    </header>
+<body>
+<nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="carrito.html" id="ver-carrito">🛒 Carrito (<span id="contador">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+<h2>Productos🛍️</h2>
+<main id="contenedor-productos" class="productos">
+<script>
+  function actualizarContador() {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const total = carrito.reduce((acc, prod) => acc + (prod.cantidad || 1), 0);
+    document.getElementById("contador").textContent = total;
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const contenedor = document.getElementById("contenedor-productos");
+    try {
+      const respuesta = await fetch("https://dummyjson.com/products");
+      const datos = await respuesta.json();
+      const productos = datos.products;
+
+      // Filtrar productos relacionados a supermercado
+      const productosFiltrados = productos.filter(producto => {
+        const titulo = producto.title.toLowerCase();
+        const categoria = producto.category ? producto.category.toLowerCase() : "";
+        // Categorías y palabras clave típicas de supermercado
+        return (
+          categoria.includes("groceries") ||
+          categoria.includes("food") ||
+          categoria.includes("beverages") ||
+          categoria.includes("snacks") ||
+          categoria.includes("fruits") ||
+          categoria.includes("vegetables") ||
+          titulo.includes("food") ||
+          titulo.includes("drink") ||
+          titulo.includes("snack") ||
+          titulo.includes("fruit") ||
+          titulo.includes("vegetable")
+        );
+      });
+
+      localStorage.setItem("todosLosProductos", JSON.stringify(productosFiltrados));
+
+      productosFiltrados.forEach(producto => {
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "producto";
+        tarjeta.innerHTML = `
+          <img src="${producto.thumbnail}" alt="${producto.title}" />
+          <h3>${producto.title}</h3>
+          <p>$${producto.price}</p>
+          <button onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
+        `;
+        contenedor.appendChild(tarjeta);
+      });
+      actualizarContador();
+    } catch (error) {
+      contenedor.innerHTML = "<p>Error al cargar los productos.</p>";
+      console.error(error);
+    }
+  });
+
+  function agregarAlCarrito(id) {
+    const productos = JSON.parse(localStorage.getItem("todosLosProductos")) || [];
+    const producto = productos.find(p => p.id === id);
+
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const item = carrito.find(p => p.id === id);
+
+    if (item) {
+      item.cantidad += 1;
+    } else {
+      carrito.push({ ...producto, cantidad: 1 });
+    }
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarContador();
+    alert(`Agregaste "${producto.title}" al carrito`);
+  }
+</script>
+</main>
+    <!-- Footer -->
+<footer style="background-color: #f4f4f4; padding: 30px 20px; text-align: center;">
+  <a style="font-size: 18px; margin-bottom: 20px;">
+    &copy; 2025 Solange Abigail Rodrigo - Tienda Canina
+  </a>
+  <div style="display: flex; justify-content: center; gap: 30px;">
+    <a href="https://facebook.com" target="_blank" style="color: #3b5998; font-size: 36px;">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://instagram.com" target="_blank" style="color: #e1306c; font-size: 36px;">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+</footer>
+</body>
+</html>

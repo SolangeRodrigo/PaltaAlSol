@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0fff4; /* muy suave verde claro */
+  color: #2a3a2a; /* verde oscuro para texto */
+  line-height: 1.6;
+  padding: 10px;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: #a3d9a5; /* verde claro */
+  border-radius: 10px;
+  margin-bottom: 0;
+}
+
+.bienvenida {
+  background-color: #c6f0c6; /* verde pastel */
+  color: #1f4620; /* verde oscuro */
+  text-align: center;
+  padding: 25px 15px;
+  font-size: 32px;
+  font-weight: 700;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0, 100, 0, 0.15);
+  font-family: 'Fredoka One', cursive;
+  letter-spacing: 1.5px;
+}
+
+.titulo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: #1f4620; /* verde oscuro */
+  text-shadow: 4px 4px 0 #7ecf7e; /* sombra verde claro */
+  letter-spacing: 5px;
+  margin: 0;
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  background-color: #7ecf7e; /* verde mediano */
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  background-color: #2a662a; /* verde oscuro */
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 5px rgba(0, 60, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+button {
+  padding: 8px 12px;
+  background-color: #2a662a; /* verde oscuro */
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #1e461e; /* verde más oscuro */
+  transform: scale(1.1);
+  box-shadow: 2px 4px 12px rgba(0, 50, 0, 0.4);
+}
+
+nav ul li a.activo {
+  background-color: #145214; /* verde muy oscuro */
+  box-shadow: inset 0 0 10px rgba(0, 80, 0, 0.3);
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.productos {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.producto {
+  background-color: #fff;
+  border: 2px solid #a3d9a5; /* verde claro */
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  width: 250px;
+  box-shadow: 2px 2px 10px rgba(0, 80, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  height: 400px;
+}
+
+.producto img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.producto h3 {
+  color: #2a662a; /* verde oscuro */
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.producto button {
+  padding: 8px 12px;
+  background-color: #2a662a; /* verde oscuro */
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.producto button:hover {
+  background-color: #1e461e; /* verde más oscuro */
+  transform: scale(1.05);
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 10px;
+  font-size: 14px;
+  color: #444; /* un gris más oscuro para texto */
+}
+
+#carrito {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #e6f4e6; /* verde muy suave */
+  border: 2px dashed #2a662a; /* verde oscuro */
+  border-radius: 10px;
+}
+
+#carrito ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#carrito li {
+  margin-bottom: 10px;
+}
+
+.oculto {
+  display: none;
+}
+
+.contacto {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f0fff4; /* verde muy claro */
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #7ecf7e;
+  box-shadow: 2px 2px 8px rgba(0, 80, 0, 0.1);
+  font-size: 18px;
+  color: #1f4620;
+  line-height: 1.8;
+}
+
+.contacto p {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .titulo {
+    font-size: 36px;
+    letter-spacing: 2px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .producto {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* FORMULARIO CONTACTO */
+.contacto form {
+  background-color: #f0fff4;
+  border: 2px solid #7ecf7e;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto 0 auto;
+  box-shadow: 2px 2px 8px rgba(0, 80, 0, 0.1);
+  font-family: 'Fredoka', sans-serif;
+}
+
+.contacto form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #1f4620;
+}
+
+.contacto form input[type="text"],
+.contacto form input[type="email"],
+.contacto form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 2px solid #7ecf7e;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Fredoka', sans-serif;
+  transition: border-color 0.3s ease;
+}
+
+.contacto form input[type="text"]:focus,
+.contacto form input[type="email"]:focus,
+.contacto form textarea:focus {
+  border-color: #2a662a;
+  outline: none;
+}
+
+.contacto form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.contacto form button {
+  background-color: #2a662a;
+  color: white;
+  font-weight: 700;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.contacto form button:hover {
+  background-color: #1e461e;
+  transform: scale(1.05);
+}
+
+/* Sidebar carrito lateral */
+#carrito {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background-color: #e6f4e6; /* verde muy suave */
+  border-left: 4px solid #2a662a;
+  box-shadow: -4px 0 15px rgba(42, 102, 42, 0.3);
+  padding: 20px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  border-radius: 0 0 0 10px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+#carrito.abierto {
+  transform: translateX(0);
+}
+
+#carrito h2 {
+  color: #2a662a;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+#lista-carrito {
+  list-style: none;
+  padding-left: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+#lista-carrito li {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #7ecf7e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #1f4620;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+#lista-carrito button {
+  background-color: #2a662a;
+  border: none;
+  color: white;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Fredoka', sans-serif;
+}
+
+#lista-carrito button:hover {
+  background-color: #1e461e;
+}
+
+#total {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #1f4620;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#vaciar-carrito {
+  background-color: #145214;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 0;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  font-family: 'Fredoka', sans-serif;
+  box-shadow: 2px 2px 8px rgba(0, 80, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#vaciar-carrito:hover {
+  background-color: #0f3a10;
+  transform: scale(1.05);
+}
+
+/* Botón para abrir/cerrar carrito */
+#btn-toggle-carrito {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #2a662a;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 30px;
+  z-index: 1100;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  box-shadow: 2px 2px 10px rgba(42, 102, 42, 0.6);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#btn-toggle-carrito:hover {
+  background-color: #1e461e;
+  transform: scale(1.1);
+}
+
+#barra-carrito {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #d1e7d1; /* verde claro */
+  color: #1f4620;
+  padding: 15px 20px;
+  font-size: 18px;
+  box-shadow: 0 -2px 8px rgba(0, 80, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+#barra-carrito button {
+  padding: 8px 16px;
+  background-color: #2a662a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#barra-carrito button:hover {
+  background-color: #1e461e;
+}
