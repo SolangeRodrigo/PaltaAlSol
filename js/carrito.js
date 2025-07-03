@@ -28,7 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
   actualizarContador();
 });
 function eliminarDelCarrito(id) {
-  carrito = carrito.filter(p => p.id !== id);
+  const item = carrito.find(p => p.id === id);
+
+  if (!item) return;
+
+  if (item.cantidad > 1) {
+    item.cantidad -= 1;
+  } else {
+    carrito = carrito.filter(p => p.id !== id);
+  }
+
   guardarCarrito();
   mostrarCarrito();
 }
