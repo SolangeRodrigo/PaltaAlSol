@@ -42,6 +42,11 @@ function eliminarDelCarrito(id) {
   mostrarCarrito();
 }
 
+
+  guardarCarrito();
+  mostrarCarrito();
+}
+
 function finalizarCompra() {
   if (carrito.length === 0) {
     alert("Tu carrito está vacío.");
